@@ -1,0 +1,132 @@
+#main{
+    margin-top: 30px;
+}
+#top{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    
+}
+.matchTeamImg{
+    width: 200px;
+}
+#homeTeamContent{
+    margin-left: 20px;
+}
+#awayTeamContent{
+    margin-right: 20px;
+}
+.team-stats-table {
+    width: 100%;           
+    border-collapse: collapse; 
+    margin-top: 10px;
+    font-size: 13px;
+}
+
+.team-stats-table th, 
+.team-stats-table td {
+    border: 1px solid #ccc; 
+    padding: 8px 4px;      
+    text-align: center;    
+}
+.team-stats-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+#homeTeam{
+    display: flex;
+    text-align: center;
+    font-size: 14px;    
+}
+#homeTeamName{
+    text-align: left;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+#time{
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%);
+    font-size: 42px;
+    font-weight: bold;
+}
+#awayTeam{
+    display: flex;
+    text-align: center;
+    font-size: 14px;    
+}
+#awayTeamName{
+    text-align: right;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+#matchLog {
+    width: 100%;       
+    margin-top: 100px; 
+}
+
+#matchLog table {
+    width: 600px;     
+    margin: 0 auto;   
+    border-collapse: collapse; 
+    text-align: center;
+}
+
+#matchLog td {
+    padding: 10px;    
+    border-bottom: 1px solid #000000; 
+}
+
+.team{
+    transform: translateX(-10%);
+}
+#matchResult{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+#matchResultTop{
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+    align-items: center;
+    
+}
+.matchTeamResultImg{
+    width: 130px;
+}
+#resultText{
+    font-size: 42px;
+}
+#matchResultMain{
+    margin-top: 20px;
+}
+#matchResultMain table {
+    width: 600px;     
+    margin: 0 auto;   
+    border-collapse: collapse; 
+    text-align: center;
+}
+
+#matchResultMain td {
+    padding: 10px;    
+    border-bottom: 1px solid #000000; 
+}
+
+#matchResultBottom{
+    display: flex;
+    width: 800px;
+    margin-top: 30px;
+    justify-content: space-around;
+    margin-bottom: 100px;
+}
+.navButton{
+    background-color: #F4D6D6;
+    padding: 10px;
+    border-radius: 15px;
+    min-width: 150px;
+}
