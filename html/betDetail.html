@@ -10,13 +10,92 @@
     <link rel="stylesheet" href="/css/common/reset.css">
 
     <!-- 페이지별 CSS -->
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/betDetail.css">
 </head>
 <body>
     <div id="header"></div>
 
     <div id="main">
-        betDetail
+        <div id="gameinfo">
+
+            <div class="team home">
+            <h2>HOME</h2>
+            <div id="teamimg"><img src="../assets/images/teams/1.png"/></div>
+            <h2>리버풀</h2>
+            </div>
+
+            <h2>VS</h2>
+            
+            <div class="team away">
+            <h2>AWAY</h2>
+            <div id="teamimg"><img src="../assets/images/teams/2.png" /></div>
+            <h2>맨체스터 시티</h2>
+            </div>
+        </div>
+
+        <div id="compare">
+            <table>
+                <tr>
+                    <td></td><td>전력비교</td><td></td>
+                </tr>
+
+                <tr>
+                    <td>1위</td><td>순위</td><td>2위</td>
+                </tr>
+
+                <tr>
+                    <td>12승2무3패</td><td>리그전적</td><td>13승1무5패</td>
+                </tr>
+
+                <tr>
+                    <td>2.1</td><td>평균득점</td><td>2.2</td>
+                </tr>
+
+                <tr>
+                    <td>3.3</td><td>평균실점</td><td>3.5</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div id="graph">
+            <span class="winRate home"> 맨체스터 유나이티드 승률: 30% </span><span class="winRate away">맨체스터 시티 승률: 70%</span>
+        </div>
+
+        <div id="bet">
+            <div class="bet-section">
+                <div class="bet-top">
+                    <button type="button" class="bet-button">HOME승: 3.0</button>
+                    <button type="button" class="bet-button">무승부: 5.0</button>
+                    <button type="button" class="bet-button">AWAY승: 1.5</button>
+                </div>
+            </div>
+
+            <div class="bet-section">
+                <div class="bet-bottom">
+                    <div class="bet-item">
+                        <select id="goal-select">
+                            <option value="">선제골 선택 (10.0)</option>
+                            <option value="home">HOME 팀</option>
+                            <option value="away">AWAY 팀</option>
+                        </select>
+                    </div>
+                    <div class="bet-score">
+                        <span>스코어 맞추기 (20.0):</span>
+                        <input type="text" id="score-text" placeholder="2 : 1">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bet-money">
+            <div class="money-box">
+                <span>배팅할 금액:</span>
+                <input type="text" placeholder="50000" />
+                <span>원</span>
+            </div>
+             <button type="button">배팅하기</button>
+        </div>
     </div>
 
     <div id="footer"></div>
