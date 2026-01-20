@@ -16,7 +16,112 @@
     <div id="header"></div>
 
     <div id="main">
-        simulation
+        <!-- top -->
+        <div id="top">
+            <div id="homeTeam">
+                <div class="matchTeamImg">
+                    <!-- 받아온 이미지로 변경해야함 -->
+                    <img src="../assets/images/teams/9.png">
+                </div>
+                <div id="homeTeamContent">
+                    <!-- 받아온 이름으로 변경해야함 -->
+                    <p id="homeTeamName">맨체스터 유나이티드FC</p>
+                    <table class="team-stats-table">
+                        <!-- 받아온 정보로 변경해야함 -->
+                        <thead>
+                            <tr>
+                                <th>리그 순위</th>
+                                <th>승리</th>
+                                <th>무승부</th> 
+                                <th>패배</th>
+                                <th>평균득점</th>
+                                <th>평균실점</th>   
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <td>9위</td> 
+                                <td>8승</td>
+                                <td>6무</td>
+                                <td>7패</td>
+                                <td>1.25</td>
+                                <td>1.3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div id="time">
+                <p>00 : 00 : 00</p>
+            </div>
+            <div id="awayTeam">
+                <div id="awayTeamContent">
+                    <p id="awayTeamName">맨체스터 유나이티드FC</p>
+                    <table class="team-stats-table">
+                        <thead>
+                            <tr>
+                                <th>리그 순위</th>
+                                <th>승리</th>
+                                <th>무승부</th> 
+                                <th>패배</th>
+                                <th>평균득점</th>
+                                <th>평균실점</th>   
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <tr>
+                                <td>9위</td> 
+                                <td>8승</td>
+                                <td>6무</td>
+                                <td>7패</td>
+                                <td>1.25</td>
+                                <td>1.3</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="matchTeamImg">
+                    <img src="../assets/images/teams/2.png">
+                </div>
+            </div>
+        </div>
+        <div id="matchLog">
+            <table>
+                <!-- 실시간 경기 로그 들어가는곳 -->
+                <tbody id="logList">
+                </tbody>
+            </table>
+        </div>
+        <!-- 경기 종료되면 표시 평상시에 diplay: none; -->
+        <div id="matchResult">
+            <div id="matchResultTop">
+                <div class="matchTeamResultImg">
+                    <!-- 이미지 받아와야함 -->
+                    <img src="../assets/images/teams/9.png">
+                </div>
+                <div id="resultText">
+                    <!-- 경기 결과 시물레이션 돌린 결과에서 받아와야함 -->
+                    <p>3 : 1</p>
+                </div>
+                <div class="matchTeamResultImg">
+                    <!-- 이미지 받아와야함 -->
+                    <img src="../assets/images/teams/2.png">
+                </div>
+            </div>
+            <div id="matchResultMain">
+                <!-- 경기 결과에 따라서 변화해야함 -->
+                <table>
+                    <tr><td>승리팀</td><td>맨체스터 유나이티드FC</td><td>+ 90582</td></tr>
+                    <tr><td>선제골</td><td>맨체스터 유나이티드FC</td><td>+ 0</td></tr>
+                    <tr><td>스코어</td><td>3 : 1</td><td>+ 0</td></tr>
+                </table>
+            </div>
+            <div id="matchResultBottom">
+                <!-- home 이동 및 마이페이지 이동 -->
+                <button class="navButton">다른 경기 배팅하러가기</button>
+                <button class="navButton">마이페이지</button>
+            </div>
+        </div>
     </div>
 
     <div id="footer"></div>
