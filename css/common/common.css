@@ -14,6 +14,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 24px 64px;
+    margin: 0 auto;
   }
   .header-left{
     display: flex;
@@ -42,6 +43,10 @@
   
   .text-center {
     text-align: center;
+  }
+
+  .center {
+    margin: 0 auto;
   }
 
   /* 임시 네비게이션 */

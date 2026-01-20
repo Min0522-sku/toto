@@ -10,13 +10,69 @@
     <link rel="stylesheet" href="/css/common/reset.css">
 
     <!-- 페이지별 CSS -->
-    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/myPage.css">
 </head>
 <body>
     <div id="header"></div>
 
     <div id="main">
-        mypage
+        <div class="main-wrap">
+            <div class="top-wrap">
+                <h2 class="username">홍길동</h2>
+                <div class="moneygraph-container">
+                    <h3 class="moneygraph-title">자산 흐름</h3>
+                    <div class="moneygraph">
+                        <canvas id="assetChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            <section class="past-result">
+                <header class="past-header">
+                    <h3 class="past-title">베팅 기록 (최근 5회)</h3>
+                </header>
+                <div class="box-list">
+                    <div class="box">
+                        <span class="box-title">맨유 vs 맨시티</span>
+                        <span class="box-meta">승무패 / 승</span>
+                        <span class="box-value">+12,000</span>
+                    </div>
+                    <div class="box">
+                        <span class="box-title">맨유 vs 맨시티</span>
+                        <span class="box-meta">승무패 / 무</span>
+                        <span class="box-value">-8,000</span>
+                    </div>
+                    <div class="box">
+                        <span class="box-title">맨유 vs 맨시티</span>
+                        <span class="box-meta">선제골 / 맨유</span>
+                        <span class="box-value">+5,500</span>
+                    </div>
+                    <div class="box">
+                        <span class="box-title">맨유 vs 맨시티</span>
+                        <span class="box-meta">스코어 / 3:2</span>
+                        <span class="box-value">+22,000</span>
+                    </div>
+                    <div class="box">
+                        <span class="box-title">맨유 vs 맨시티</span>
+                        <span class="box-meta">스코어 / 3:0</span>
+                        <span class="box-value">0</span>
+                    </div>
+                </div>
+                <div class="stat-list">
+                    <div class="stat">
+                        <span class="stat-label">총 베팅 금액</span>
+                        <span class="stat-value">250,000</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">수익률</span>
+                        <span class="stat-value positive">+8.4%</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">최고 수익금</span>
+                        <span class="stat-value">+22,000</span>
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 
     <div id="footer"></div>
