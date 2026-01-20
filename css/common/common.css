@@ -1,0 +1,52 @@
+/* Layout width */
+.main {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  
+  /* Header */
+  #header {
+    max-width: 1680px;
+    height: 112px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 64px;
+  }
+  .header-left{
+    display: flex;
+  }
+  .header-right{
+    display: flex;
+  }
+  .logo-icon, .logo-title{
+    height: 64px;
+    margin-right: 20px;
+  }
+  .meta-name, .mypage{
+    margin-left: 20px;
+  }
+
+  /* Footer */
+  #footer{
+    max-width: 1680px;
+  }
+
+  
+  /* Utility */
+  .hidden {
+    display: none;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+
+  /* 임시 네비게이션 */
+  .temp{
+    border: 1px solid black;
+    width: 220px;
+    text-align: center;
+  }
