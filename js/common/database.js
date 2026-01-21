@@ -26,8 +26,21 @@ const user = [
 
 const match = [
     { id: 1, home_team_id: 1, away_team_id: 2, status: "경기 종료", result: "3:2", date: "2026-01-19", maxProfit: 780000, participantCount: 128 },
-    { id: 2, home_team_id: 3, away_team_id: 1, status: "경기 중", result: "", date: "", maxProfit: "", participantCount: "" },
-    { id: 3, home_team_id: 4, away_team_id: 6, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 2, home_team_id: 3, away_team_id: 1, status: "경기 종료", result: "1:1", date: "2026-01-18", maxProfit: 420000, participantCount: 96 },
+    { id: 3, home_team_id: 4, away_team_id: 6, status: "경기 종료", result: "0:2", date: "2026-01-17", maxProfit: 310000, participantCount: 74 },
+    { id: 4, home_team_id: 5, away_team_id: 7, status: "경기 종료", result: "2:0", date: "2026-01-17", maxProfit: 510000, participantCount: 88 },
+    { id: 5, home_team_id: 8, away_team_id: 9, status: "경기 종료", result: "4:1", date: "2026-01-16", maxProfit: 690000, participantCount: 140 },
+    { id: 6, home_team_id: 10, away_team_id: 2, status: "경기 종료", result: "0:3", date: "2026-01-16", maxProfit: 560000, participantCount: 120 },
+    { id: 7, home_team_id: 6, away_team_id: 3, status: "경기 종료", result: "2:2", date: "2026-01-15", maxProfit: 270000, participantCount: 62 },
+    { id: 8, home_team_id: 7, away_team_id: 4, status: "경기 종료", result: "1:0", date: "2026-01-15", maxProfit: 330000, participantCount: 71 },
+    { id: 9, home_team_id: 2, away_team_id: 5, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 10, home_team_id: 1, away_team_id: 8, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 11, home_team_id: 3, away_team_id: 9, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 12, home_team_id: 4, away_team_id: 10, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 13, home_team_id: 5, away_team_id: 1, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 14, home_team_id: 6, away_team_id: 2, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 15, home_team_id: 7, away_team_id: 3, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 16, home_team_id: 8, away_team_id: 4, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
 ]
 
 const log = [
