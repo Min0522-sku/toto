@@ -50,6 +50,7 @@
     width: 48px;
     height: 48px;
     margin: 0 auto;
+    object-fit: contain;
 }
 .league-name{
     font-size: 12px;
