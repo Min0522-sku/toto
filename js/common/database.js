@@ -2,6 +2,8 @@ const league = [
     { id: 1, name: "epl", imageUrl: "/assets/images/leagus/epl.svg"},
     { id: 2, name: "laliga", imageUrl: "/assets/images/leagus/laliga.png"},
     { id: 3, name: "bundesliga", imageUrl: "/assets/images/leagus/bundesliga.svg"},
+    { id: 4, name: "champions league", imageUrl: "/assets/images/leagus/champions_league.png"},
+    { id: 5, name: "europa league", imageUrl: "/assets/images/leagus/europa_league.png"},
 ]
 
 const team = [
