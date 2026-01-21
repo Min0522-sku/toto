@@ -21,7 +21,7 @@
         </div>
         <div class="game-table" style="margin-top: 40px;">
             <h2 class="table-title">오늘의 경기</h2>
-            <div class="table">
+            <div id="todayTable" class="table">
                 <ul class="table-row">
                     <li class="table-item">스포츠명</li>
                     <li class="table-item">리그</li>
@@ -80,7 +80,7 @@
 
         <div class="game-table">
             <h2 class="table-title">지난 경기</h2>
-            <div class="table">
+            <div id="pastTable" class="table">
                 <ul class="table-row">
                     <li class="table-item">스포츠명</li>
                     <li class="table-item">리그</li>
@@ -146,6 +146,6 @@
     <div id="footer"></div>
     <script src="/js/common/common.js"></script>
     <script type="module" src="/js/index.js"></script>
-    script에 type="module"을 넣어야 db import가 가능함
+    <!-- script에 type="module"을 넣어야 db import가 가능함 -->
 </body>
 </html>
