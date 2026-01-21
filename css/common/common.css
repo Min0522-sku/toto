@@ -52,6 +52,6 @@
   /* 임시 네비게이션 */
   .temp{
     border: 1px solid black;
-    width: 220px;
+    padding: 0 20px;
     text-align: center;
   }
