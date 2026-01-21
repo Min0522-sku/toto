@@ -17,7 +17,7 @@
     const matchData = JSON.parse(localStorage.getItem('match'));
     const teamData = JSON.parse(localStorage.getItem('team'));
     
-    let selectedId = localStorage.getItem('selectedMatchId');
+    let selectedId = new URLSearchParams(location.search).get("id")
     let targetMatch = "";
     for (let i = 0; i < matchData.length; i++) {
         if (matchData[i].id == selectedId) {
@@ -25,6 +25,7 @@
             break; 
         }
     }
+
 
     const hTeamId = targetMatch.home_team_id;
     const aTeamId = targetMatch.away_team_id;
@@ -64,8 +65,11 @@
     rows[3].cells[2].innerText = awayTeam.avgConceded;
 
     // 8. 승률 그래프 계산 및 적용
+
     const total = homeTeam.offense + awayTeam.offense;
-    const hRate = Math.round((homeTeam.offense / total) * 100);
+        console.log(homeTeam);
+        console.log(awayTeam);
+    const hRate = Math.round(getWinrate(homeTeam.offense , homeTeam.defense, awayTeam.offense, awayTeam.defense) * 100);
     const aRate = 100 - hRate;
 
     const hBar = document.querySelector('.winRate.home');
@@ -86,8 +90,6 @@
     betBtns[0].innerText = `HOME승: ${hOdds}`;
     betBtns[1].innerText = `무승부: 3.50`;
     betBtns[2].innerText = `AWAY승: ${aOdds}`;
-
-    localStorage.setItem('selectedMatchId', 8) 
 
     //배팅 기능
     
