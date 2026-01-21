@@ -45,7 +45,7 @@ const match = [
     { id: 13, league_id: 1, home_team_id: 5, away_team_id: 1, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
     { id: 14, league_id: 1, home_team_id: 6, away_team_id: 2, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
     { id: 15, league_id: 1, home_team_id: 7, away_team_id: 3, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
-    { id: 16, league_id: 3, home_team_id: 1, away_team_id: 11, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
+    { id: 16, league_id: 4, home_team_id: 1, away_team_id: 11, status: "경기 전", result: "", date: "", maxProfit: "", participantCount: "" },
 ]
 
 const log = [
