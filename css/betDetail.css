@@ -63,7 +63,7 @@
     margin-top: 100px;
 }
 
-.away > #teamimg > img{
+.away > #away-teamimg > img{
     margin-left: 19px;
 }
 
@@ -71,11 +71,15 @@
     margin-top: 10px;
 }
 
-.away > #teamimg > img{
+.away > #away-teamimg > img{
     padding-bottom: 5px;
 }
 
-#teamimg > img{
+#away-teamimg > img{
+    width: 100px;
+    height: 100px;
+}
+#home-teamimg > img{
     width: 100px;
     height: 100px;
 }
@@ -133,7 +137,6 @@ td:nth-child(2) {
 #bet {
     width: 1280px;
     margin: 20px auto;
-    font-family: 'Pretendard', sans-serif;
 }
 
 #bet .bet-section {
@@ -174,13 +177,12 @@ td:nth-child(2) {
 
 #bet .bet-button:hover {
     border: 3px solid orange;
-    color: #333 !important;
+    color: #333 ;
     background-color: #fff;
 }
 
 #bet .bet-item, 
 #bet .bet-score {
-    cursor: default;
     background-color: #fafafa;
     border: 1px solid #ccc;
 }
@@ -188,7 +190,6 @@ td:nth-child(2) {
 #bet .bet-item:hover, 
 #bet .bet-score:hover {
     border-color: #999;
-    outline: none;
     color: #333;
 }
 
@@ -200,10 +201,8 @@ td:nth-child(2) {
     width: 100%;
     height: 100%;
     border: none;
-    background: transparent;
     font-size: 20px;
     outline: none;
-    cursor: pointer;
     color: #333;
 }
 
