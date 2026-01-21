@@ -87,7 +87,7 @@
     betBtns[1].innerText = `무승부: 3.50`;
     betBtns[2].innerText = `AWAY승: ${aOdds}`;
 
-    localStorage.setItem('selectedMatchId', 5) 
+    localStorage.setItem('selectedMatchId', 8) 
 
     //배팅 기능
     
