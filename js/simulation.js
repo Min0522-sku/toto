@@ -169,6 +169,7 @@ function startSimulation() {
                 if (currentEvent.team === "home") currentScore.home++;
                 else currentScore.away++;
                 if (firstGoalTeam === null) firstGoalTeam = currentEvent.team;
+                document.querySelector("#realTimeScore").innerText = `${currentScore.home} : ${currentScore.away}`;
             }
 
             const newRow = document.createElement("tr");
