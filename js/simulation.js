@@ -232,10 +232,16 @@ function calculateAndSaveResult() {
     }
 
     // 3. 돈 계산
-    const odds = currentBetLog.odds || 1.0; 
+    let odds = currentBetLog.odds || 1.0; 
+    if (betId === 2) {
+        odds = 10.0;
+    } else if (betId === 3) {
+        odds = 20.0;
+    }
+
     const payout = isSuccess ? Math.floor(currentBetLog.betAmount * odds) : 0;
     
-    finalProfit = isSuccess ? payout : 0; 
+    finalProfit = isSuccess ? payout : 0;
 
     // 4. [날짜 생성] 오늘 날짜 구하기 (YYYY-MM-DD 형식)
     const now = new Date();
