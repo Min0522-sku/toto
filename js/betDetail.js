@@ -182,8 +182,8 @@ function bettingBtn(){
         return;
     }
     const user = JSON.parse(localStorage.getItem('user'))
-    let userMoney = Number(localStorage.getItem('user').money)
-    if(userMoney < betAmount){
+    const userMoney = Number(localStorage.getItem('user').money)
+    if(userMoney < amountValue){
         alert("잔액이 부족합니다")
         return;
     }
@@ -195,7 +195,7 @@ function bettingBtn(){
         bet_id: betId , 
         betContent,
         createdAt: todayString ,
-        betAmount: document.querySelector(".betAmount") , 
+        betAmount: amountInput.value, 
     }
 
     userLog.push(betUserLog)
