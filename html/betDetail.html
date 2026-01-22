@@ -64,22 +64,22 @@
         <div id="bet">
             <div class="bet-section">
                 <div class="bet-top">
-                    <button type="button" class="bet-button">HOME승: 3.0</button>
-                    <button type="button" class="bet-button">무승부: 5.0</button>
-                    <button type="button" class="bet-button">AWAY승: 1.5</button>
+                    <button type="button" class="bet-button btn1" onclick="homeCheck(this)"> HOME승: 3.0</button>
+                    <button type="button" class="bet-button btn2" onclick="homeCheck(this)">무승부: 5.0</button>
+                    <button type="button" class="bet-button btn3" onclick="homeCheck(this)">AWAY승: 1.5</button>
                 </div>
             </div>
 
             <div class="bet-section">
                 <div class="bet-bottom">
                     <div class="bet-item">
-                        <select id="goal-select">
+                        <select id="goal-select" onchange="firstGoal(this)">
                             <option value="">선제골 선택 (10.0)</option>
-                            <option value="home">HOME 팀</option>
-                            <option value="away">AWAY 팀</option>
+                            <option value="home" onchange="firstGoal(this)" >HOME 팀</option>
+                            <option value="away" onchange="firstGoal(this)" >AWAY 팀</option>
                         </select>
                     </div>
-                    <div class="bet-score">
+                    <div class="bet-score" onchange="scoreSelect()">
                         <span>스코어 맞추기 (20.0):</span>
                         <input type="text" id="score-text" placeholder="2 : 1">
                     </div>
@@ -90,10 +90,10 @@
         <div id="bet-money">
             <div class="money-box">
                 <span>배팅할 금액:</span>
-                <input type="text" placeholder="50000" />
+                <input class="betAmount" type="text" placeholder="50000" />
                 <span>원</span>
             </div>
-             <button type="button">배팅하기</button>
+             <button type="button" onclick="bettingBtn()">배팅하기</button>
         </div>
     </div>
 
