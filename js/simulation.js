@@ -63,14 +63,18 @@ if (!currentBetLog) {
     };
     currentUser = { id: 1, name: "박지훈", money: 100000 };
 } else {
-    for (let i = 0; i < users.length; i++) {
-        if (users[i].id === currentBetLog.user_id) {
-            currentUser = users[i];
-            break; // 찾았으면 반복문 종료
+    if (me) {
+        currentUser = me;
+    } else {
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id === currentBetLog.user_id) {
+                currentUser = users[i];
+                break; 
+            }
         }
     }
 }
-
+console.log(currentBetLog);
 // 경기 정보 찾기
 let targetMatch = null;
 // 1. 로컬스토리지 matches에서 찾기
@@ -80,7 +84,7 @@ for (let i = 0; i < matches.length; i++) {
         break;
     }
 }
-
+console.log(targetMatch);
 let matchInfo = targetMatch;
 // 2. 만약 없으면 db.match(원본)에서 찾기
 if (!matchInfo) {
