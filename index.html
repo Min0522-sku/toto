@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fake Betting</title>
+    <title>Fake Betting Login</title>
 
     <!-- 공통 CSS -->
     <link rel="stylesheet" href="/css/common/common.css">
@@ -13,139 +13,20 @@
     <link rel="stylesheet" href="/css/index.css">
 </head>
 <body>
-    <div id="header"></div>
-
     <div id="main">
-        <div class="icon">
-            <img class="icon-img" src="/assets/images/logo-icon.svg">
-        </div>
-        <div class="game-table" style="margin-top: 40px;">
-            <h2 class="table-title">오늘의 경기</h2>
-            <div id="todayTable" class="table">
-                <ul class="table-row">
-                    <li class="table-item">스포츠명</li>
-                    <li class="table-item">리그</li>
-                    <li class="table-item">홈팀</li>
-                    <li class="table-item">원정팀</li>
-                    <li class="table-item betBtnContainer">베팅하기</li>
-                </ul>
-                <ul class="table-row" style="margin-top: 24px;">
-                    <li class="table-item">
-                        <img class="sports-img center" src="/assets/images/sports/Football.svg">
-                    </li>
-                    <li class="table-item">
-                        <img class="league-img" src="/assets/images/leagues/epl.svg">
-                        <div class="league-name">EPL</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/epl/9.png">
-                        <div class="team-name">맨유</div>
-                        <div class="team-winrate">30%</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/epl/2.png">
-                        <div class="team-name">맨시티</div>
-                        <div class="team-winrate">70%</div>
-                    </li>
-                    <li class="table-item betBtnContainer">
-                        <button onclick="" class="betBtn">베팅하기</button>
-                    </li>
-                </ul>
-                <ul class="table-row">
-                    <li class="table-item">
-                        <img class="sports-img center" src="/assets/images/sports/Football.svg">
-                    </li>
-                    <li class="table-item">
-                        <img class="league-img" src="/assets/images/leagues/epl.svg">
-                        <div class="league-name">EPL</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/9.png">
-                        <div class="team-name">맨유</div>
-                        <div class="team-winrate">30%</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/2.png">
-                        <div class="team-name">맨시티</div>
-                        <div class="team-winrate">70%</div>
-                    </li>
-                    <li class="table-item betBtnContainer">
-                        <button onclick="" class="betBtn">베팅하기</button>
-                    </li>
-                </ul>
+        <div class="login-wrap">
+            <div>
+                <img class="logo-img" src="/assets/images/logo.svg">
             </div>
-        </div>
-        
-        <div class="divider"></div>
-
-        <div class="game-table">
-            <h2 class="table-title">지난 경기</h2>
-            <div id="pastTable" class="table">
-                <ul class="table-row">
-                    <li class="table-item">스포츠명</li>
-                    <li class="table-item">리그</li>
-                    <li class="table-item">홈팀</li>
-                    <li class="table-item">결과</li>
-                    <li class="table-item">원정팀</li>
-                    <li class="table-item bettorsContainer">베팅 참여자 수</li>
-                </ul>
-                <ul class="table-row" style="margin-top: 24px;">
-                    <li class="table-item">
-                        <img class="sports-img center" src="/assets/images/sports/Football.svg">
-                    </li>
-                    <li class="table-item">
-                        <img class="league-img" src="/assets/images/leagues/epl.svg">
-                        <div class="league-name">EPL</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/9.png">
-                        <div class="team-name">맨유</div>
-                        <div class="team-winrate">30%</div>
-                    </li>
-                    <li class="table-item">
-                        <span class="result-text">0 : 3</span>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/2.png">
-                        <div class="team-name">맨시티</div>
-                        <div class="team-winrate">70%</div>
-                    </li>
-                    <li class="table-item betBtnContainer">
-                        128 명
-                    </li>
-                </ul>
-                <ul class="table-row">
-                    <li class="table-item">
-                        <img class="sports-img center" src="/assets/images/sports/Football.svg">
-                    </li>
-                    <li class="table-item">
-                        <img class="league-img" src="/assets/images/leagues/epl.svg">
-                        <div class="league-name">EPL</div>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/9.png">
-                        <div class="team-name">맨유</div>
-                        <div class="team-winrate">30%</div>
-                    </li>
-                    <li class="table-item">
-                        <span class="result-text">0 : 3</span>
-                    </li>
-                    <li class="table-item">
-                        <img class="team-img" src="/assets/images/teams/2.png">
-                        <div class="team-name">맨시티</div>
-                        <div class="team-winrate">70%</div>
-                    </li>
-                    <li class="table-item betBtnContainer">
-                        128 명
-                    </li>
-                </ul>
+            <div class="login-card">
+                <h2 class="login-title">로그인</h2>
+                <label class="login-label" for="userName">이름</label>
+                <input class="login-input" id="userName" type="text" placeholder="이름을 입력하세요" />
+                <button class="login-button" type="button" onclick="login()">입장하기</button>
             </div>
         </div>
     </div>
-
-    <div id="footer"></div>
     <script src="/js/common/common.js"></script>
     <script type="module" src="/js/index.js"></script>
-    <!-- script에 type="module"을 넣어야 db import가 가능함 -->
 </body>
 </html>

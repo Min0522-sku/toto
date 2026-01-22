@@ -23,10 +23,10 @@ const team = [
 ]
 
 const user = [
-    { id: 1, name: "박지훈", money: 100000 },
-    { id: 2, name: "김수연", money: 70000 },
-    { id: 3, name: "조기수", money: 50000 },
-    { id: 4, name: "최영민", money: 65000 },
+    { id: 1, name: "박지훈", money: 1000000 },
+    { id: 2, name: "김수연", money: 1000000 },
+    { id: 3, name: "조기수", money: 1000000 },
+    { id: 4, name: "최영민", money: 1000000 },
 ]
 
 const match = [
@@ -62,10 +62,37 @@ const event = [
     { id: 2, type: "save" },
 ]
 
+const bet = [
+    { id: 1, type: "승무패 예측" },
+    { id: 2, type: "선제골 예측" },
+    { id: 3, type: "스코어 예측" },
+]
+
 const userLog = [
-    { id: 1, user_id: 1, match_id: 1, bet_id: 1, bet_content: "home", createdAt: "", betAmount: 100000, isSuccess: true, payout: 360000 },
-    { id: 2, user_id: 4, match_id: 2, bet_id: 2, bet_content: "away", createdAt: "", betAmount: 100000, isSuccess: true, payout: 360000 },
-    { id: 3, user_id: 5, match_id: 3, bet_id: 3, bet_content: "3:2", createdAt: "", betAmount: 100000, isSuccess: true, payout: 360000 },
+    { id: 1, user_id: 1, match_id: 1, bet_id: 1, betContent: "home", createdAt: "2026-01-21", betAmount: 100000, isSuccess: true, payout: 360000 },
+    { id: 2, user_id: 4, match_id: 2, bet_id: 2, betContent: "away", createdAt: "2026-01-22", betAmount: 100000, isSuccess: true, payout: 360000 },
+    { id: 3, user_id: 3, match_id: 3, bet_id: 3, betContent: "3:2", createdAt: "2026-01-22", betAmount: 100000, isSuccess: true, payout: 360000 },
+    { id: 4, user_id: 1, match_id: 4, bet_id: 1, betContent: "home", createdAt: "2026-01-23", betAmount: 45000, isSuccess: true, payout: 117000 },
+    { id: 5, user_id: 2, match_id: 5, bet_id: 2, betContent: "away", createdAt: "2026-01-24", betAmount: 32000, isSuccess: false, payout: 0 },
+    { id: 6, user_id: 3, match_id: 6, bet_id: 3, betContent: "0:3", createdAt: "2026-01-25", betAmount: 78000, isSuccess: true, payout: 265200 },
+    { id: 7, user_id: 4, match_id: 7, bet_id: 1, betContent: "away", createdAt: "2026-01-26", betAmount: 15000, isSuccess: false, payout: 0 },
+    { id: 8, user_id: 1, match_id: 8, bet_id: 2, betContent: "home", createdAt: "2026-01-27", betAmount: 60000, isSuccess: true, payout: 132000 },
+    { id: 9, user_id: 2, match_id: 1, bet_id: 3, betContent: "2:1", createdAt: "2026-01-28", betAmount: 41000, isSuccess: true, payout: 127100 },
+    { id: 10, user_id: 3, match_id: 2, bet_id: 1, betContent: "home", createdAt: "2026-01-29", betAmount: 27000, isSuccess: false, payout: 0 },
+    { id: 11, user_id: 4, match_id: 3, bet_id: 2, betContent: "away", createdAt: "2026-01-30", betAmount: 52000, isSuccess: true, payout: 145600 },
+    { id: 12, user_id: 1, match_id: 4, bet_id: 3, betContent: "1:1", createdAt: "2026-01-31", betAmount: 83000, isSuccess: false, payout: 0 },
+    { id: 13, user_id: 2, match_id: 5, bet_id: 1, betContent: "away", createdAt: "2026-02-01", betAmount: 10000, isSuccess: true, payout: 37000 },
+    { id: 14, user_id: 3, match_id: 6, bet_id: 2, betContent: "home", createdAt: "2026-02-02", betAmount: 94000, isSuccess: true, payout: 197400 },
+    { id: 15, user_id: 4, match_id: 7, bet_id: 3, betContent: "4:0", createdAt: "2026-02-03", betAmount: 68000, isSuccess: false, payout: 0 },
+    { id: 16, user_id: 1, match_id: 8, bet_id: 1, betContent: "home", createdAt: "2026-02-04", betAmount: 39000, isSuccess: true, payout: 97500 },
+    { id: 17, user_id: 2, match_id: 1, bet_id: 2, betContent: "away", createdAt: "2026-02-05", betAmount: 76000, isSuccess: false, payout: 0 },
+    { id: 18, user_id: 3, match_id: 2, bet_id: 3, betContent: "2:2", createdAt: "2026-02-06", betAmount: 22000, isSuccess: true, payout: 72600 },
+    { id: 19, user_id: 4, match_id: 3, bet_id: 1, betContent: "away", createdAt: "2026-02-07", betAmount: 87000, isSuccess: true, payout: 208800 },
+    { id: 20, user_id: 1, match_id: 4, bet_id: 2, betContent: "home", createdAt: "2026-02-08", betAmount: 54000, isSuccess: false, payout: 0 },
+    { id: 21, user_id: 2, match_id: 5, bet_id: 3, betContent: "3:2", createdAt: "2026-02-09", betAmount: 61000, isSuccess: true, payout: 176900 },
+    { id: 22, user_id: 3, match_id: 6, bet_id: 1, betContent: "home", createdAt: "2026-02-10", betAmount: 33000, isSuccess: false, payout: 0 },
+    { id: 23, user_id: 4, match_id: 7, bet_id: 2, betContent: "away", createdAt: "2026-02-11", betAmount: 47000, isSuccess: true, payout: 150400 },
+    { id: 24, user_id: 2, match_id: 8, bet_id: 3, betContent: "1:0", createdAt: "2026-02-12", betAmount: 91000, isSuccess: true, payout: 245700 },
 ]
 
 const db = {
@@ -75,6 +102,7 @@ const db = {
     match,
     log,
     event,
+    bet,
     userLog,
 }
 

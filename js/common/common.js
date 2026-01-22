@@ -9,9 +9,12 @@ async function loadHTML(selector, url) {
     container.innerHTML = html;   
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    loadHTML("#header", "/html/common/header.html");
-    loadHTML("#footer", "/html/common/footer.html");
+document.addEventListener("DOMContentLoaded", async() => {
+    await loadHTML("#header", "/html/common/header.html");
+    await loadHTML("#footer", "/html/common/footer.html");
+
+    let userName = JSON.parse(localStorage.getItem("me")).name || "홍길동";
+    document.querySelector(".meta-name").innerHTML = `${userName} 님 환영합니다.`;
 });
 
 // 사용자의 이름과 자본금을 헤더에 print
