@@ -92,6 +92,131 @@
     betBtns[2].innerText = `AWAY승: ${aOdds}`;
 
     //배팅 기능
+
     
+
+    
+
+let isSelected = false;  // 선택 여부 (true/false)
+let betId;       // 종목 id
+let betContent = "";     // 선택한 내용
+
+// 리셋 함수
+function reset() {
+    isSelected = false;
+    betId = undefined;
+    betContent = "";
+
+    const allBtn = document.querySelectorAll(".bet-button")
+    for(let i = 0 ; i <= allBtn.length -1 ; i++){
+        allBtn[i].style.backgroundColor = "white"
+        allBtn[i].style.color = "black"
+    }
+    document.querySelector("#goal-select").style.color = ""
+    
+
+
+    console.log("모든 선택 리셋 완료");
+}
+
+// 1. 승무패 버튼 클릭 시
+function homeCheck(btn) {
+    reset(); 
+    document.querySelector("#score-text").value = "";
+
+    isSelected = true;     
+    betId = 1 ;
+    betContent = btn.innerText;
+
+    btn.style.background = "orange"
+
+    
+    
+    console.log(`${"선택됨:"} ${betId} ${(betContent)}` );
+}
+
+
+function firstGoal(option){
+    reset(); 
+    document.querySelector("#score-text").value = "";
+    
+
+    isSelected = true;
+    betId = 2 ;
+    betContent = option.value;
+
+    option.style.color = "orange"
+
+    
+
+    console.log(`${"선택됨:"} ${betId} ${betContent}`);
+}
+
+function scoreSelect(){
+    reset(); 
+
+    isSelected = true;
+    betId = 3
+    let inputScore = document.querySelector("#score-text")
+    betContent = inputScore.value ; 
+
+    console.log(`${"선택됨:"} ${betId} ${betContent}`);
+}
+
+const userLog = JSON.parse(localStorage.getItem('userLog'))
+if(userLog ==null){
+    userLog =[];
+}
+
+function bettingBtn(){
+    
+    const amountInput = document.querySelector(".betAmount")
+    const amountValue = Number(amountInput.value)
+
+    if(isSelected == null){
+        alert("배팅 종목을 선택해 주세요!");
+        return;
+    }
+    if(amountValue <= 0 || amountValue == null){
+        alert("금액을 정확히 입력해주세요(숫자만가능)")
+        return;
+    }
+    const user = JSON.parse(localStorage.getItem('user'))
+    let userMoney = Number(localStorage.getItem('user').money)
+    if(userMoney < betAmount){
+        alert("잔액이 부족합니다")
+        return;
+    }
+    
+    const betUserLog = {
+        id: userLog <= 0 ? 1 : userLog[userLog.length-1].id + 1 ,
+        user_id: JSON.parse(localStorage.getItem('me')).id ,
+        match_id: selectedId , 
+        bet_id: betId , 
+        betContent,
+        createdAt: todayString ,
+        betAmount: document.querySelector(".betAmount") , 
+    }
+
+    userLog.push(betUserLog)
+    localStorage.setItem('userLog' , JSON.stringify(userLog))
+    location.href="/html/simulation.html"
+}
+
+
+
+//{ id: 3, user_id: 5, match_id: 3, bet_id: 3, betContent: "3:2", createdAt: "", betAmount: 100000, isSuccess: true, payout: 360000 },
+
+
+
+
+const today = new Date();
+
+const year = today.getFullYear();      
+const month = today.getMonth() + 1;   
+const date = today.getDate();         
+
+const todayString = year + "-" + month + "-" + date;
+
 
 
