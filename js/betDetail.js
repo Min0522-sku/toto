@@ -17,7 +17,7 @@
     const matchData = JSON.parse(localStorage.getItem('match'));
     const teamData = JSON.parse(localStorage.getItem('team'));
     
-    let selectedId = new URLSearchParams(location.search).get("id")
+    let selectedId = Number(new URLSearchParams(location.search).get("id"));
     let targetMatch = "";
     for (let i = 0; i < matchData.length; i++) {
         if (matchData[i].id == selectedId) {
@@ -126,7 +126,7 @@ function homeCheck(btn) {
 
     isSelected = true;     
     betId = 1 ;
-    betContent = btn.innerText;
+    betContent = btn.id;
 
     btn.style.background = "orange"
 
