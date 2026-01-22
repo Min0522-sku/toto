@@ -8,8 +8,8 @@ const matches = JSON.parse(localStorage.getItem("match")) || db.match;
 const teams = JSON.parse(localStorage.getItem("team")) || db.team;     
 const users = JSON.parse(localStorage.getItem("user")) || db.user;
 
-const currentUserId = Number(localStorage.getItem("currentUserId")) || 1;  // 없으면 1번 가져옴
-
+const me = JSON.parse(localStorage.getItem("me"));
+const currentUserId = me ? me.id : 1;
 // 내 최신 배팅 내역 가져오기
 let myLogs = [];
 // 1. userLogs 전체를 돌면서 내 아이디랑 같은 것만 myLogs에 담기
@@ -23,6 +23,33 @@ for (let i = 0; i < userLogs.length; i++) {
 let currentBetLog = null;
 if (myLogs.length > 0) {
     currentBetLog = myLogs[myLogs.length - 1];
+    
+    // [수정 2] ★ 친구 데이터 번역기 (Parsing) ★
+    // 친구가 "HOME승: 1.55"로 저장한 걸 내 코드("home")에 맞게 변환
+    
+    // 1. 변수명 통일 (친구: betContent, 나: bet_content)
+    let rawContent = currentBetLog.betContent || currentBetLog.bet_content;
+    let fixedContent = rawContent;
+    let extractedOdds = 1.0;
+
+    // 2. 승무패(1번)일 때 텍스트 변환 & 배당률 추출
+    if (currentBetLog.bet_id == 1) { // 문자열일 수도 있어서 == 사용
+        if (rawContent.includes("HOME")) fixedContent = "home";
+        else if (rawContent.includes("AWAY")) fixedContent = "away";
+        else if (rawContent.includes("무승부")) fixedContent = "draw";
+
+        // 배당률 숫자 뽑기 (예: "HOME승: 1.55" -> 1.55)
+        if (rawContent.includes(":")) {
+            let parts = rawContent.split(":");
+            extractedOdds = parseFloat(parts[1].trim());
+        }
+    }
+    
+    // 변환된 값을 내 로직이 사용하는 변수에 넣어줌
+    currentBetLog.bet_content = fixedContent; 
+    currentBetLog.odds = extractedOdds;
+    
+    console.log("번역된 배팅 정보:", currentBetLog);
 }
 // ★ 테스트 데이터 생성 (bet_content 추가)
 let currentUser = null;
@@ -275,6 +302,8 @@ function calculateAndSaveResult() {
         localStorage.setItem("match", JSON.stringify(matches));
         localStorage.setItem("userLog", JSON.stringify(userLogs));
         localStorage.setItem("user", JSON.stringify(users));
+        console.log(currentUser);
+        localStorage.setItem("me", JSON.stringify(currentUser) );
 
         const existingLogs = JSON.parse(localStorage.getItem("log")) || [];
         
