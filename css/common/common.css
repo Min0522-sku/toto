@@ -18,6 +18,7 @@
   }
   .header-left{
     display: flex;
+    align-items: center;
   }
   .header-right{
     display: flex;
@@ -28,6 +29,12 @@
   }
   .meta-name, .mypage{
     margin-left: 20px;
+  }
+  .logo-title-text{
+    font-size: 56px;
+    font-weight: 900;
+    color: #360D3A;
+    font-style: italic;
   }
 
   /* Footer */
