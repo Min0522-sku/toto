@@ -56,7 +56,7 @@ function buildAssetSeries(logs, matches, teams) {
         matches.map((match) => [Number(match.id), match])
     );
 
-    let total = 0;
+    let total = 100000; // 초기 금액 100,000원
     const series = [];
     const labels = [];
 
