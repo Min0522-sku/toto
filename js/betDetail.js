@@ -173,11 +173,11 @@ function bettingBtn(){
     const amountInput = document.querySelector(".betAmount")
     const amountValue = Number(amountInput.value)
 
-    if(isSelected == null){
+    if(isSelected == false){
         alert("배팅 종목을 선택해 주세요!");
         return;
     }
-    if(amountValue <= 0 || amountValue == null){
+    if(amountValue <= 0 || amountValue == null || amountValue % 1 !== 0 ){
         alert("금액을 정확히 입력해주세요(숫자만가능)")
         return;
     }
@@ -188,6 +188,18 @@ function bettingBtn(){
         return;
     }
     
+    if(betId == 3){
+        let inputScore = document.querySelector("#score-text")
+        betContent = inputScore.value ;
+        const scoreType = /^[0-9]+:[0-9]+$/ ;
+        if(!scoreType.test(betContent)){ console.log(betContent) ;
+            alert("스코어 형식을 맞추세요(예: 2:1)")
+            return;
+        }
+    }
+    
+
+        
     const betUserLog = {
         id: userLog <= 0 ? 1 : userLog[userLog.length-1].id + 1 ,
         user_id: JSON.parse(localStorage.getItem('me')).id ,
@@ -217,6 +229,7 @@ const month = today.getMonth() + 1;
 const date = today.getDate();         
 
 const todayString = year + "-" + month + "-" + date;
+
 
 
 
