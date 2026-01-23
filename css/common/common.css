@@ -9,11 +9,11 @@
   #header {
     max-width: 1680px;
     height: 112px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eceff3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 64px;
+    padding: 16px 48px;
     margin: 0 auto;
   }
   .header-left{
@@ -22,6 +22,8 @@
   }
   .header-right{
     display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .logo-icon, .logo-title{
     height: 64px;
@@ -35,6 +37,18 @@
     font-weight: 900;
     color: #360D3A;
     font-style: italic;
+    letter-spacing: 0.04em;
+  }
+  .meta-name{
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .mypage a{
+    font-size: 13px;
+    color: #360D3A;
+    background: #f5f0f6;
+    padding: 6px 12px;
+    border-radius: 8px;
   }
 
   /* Footer */
