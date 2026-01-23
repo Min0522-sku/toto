@@ -170,10 +170,9 @@ function formatAmount(value) {
 function drawMatchLabel() {}
 
 
-function printBettingHistory(){
-    // [1] .box-list, .stat-list dom 가져오기
+function printRecentHistory(){
+    // [1] .box-list dom 가져오기
     let boxlistDom = document.querySelector(".box-list");
-    let statlistDom = document.querySelector(".stat-list");
 
     // [2] localStorage에서 필요한 데이터 가져옴
     // 홈팀이름, 원정팀이름, 베팅종목, 베팅내용, 베팅금액, 수익금
@@ -182,31 +181,33 @@ function printBettingHistory(){
     let teams = getTeams();
     let bets = getBets();
 
-    let recent5Logs = userLogs.slice().sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(-5);
+    let recent5Logs = userLogs
+                        .slice()
+                        .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt))
+                        .slice(-5);
     
     let boxlistHtml = ``;
     for(let i = 0; i < 5; i++){
-        if(recent5Logs.length < i + 1) break;
+        if(recent5Logs.length < i + 1) break; // 베팅 기록이 5개 이하일 경우 반복을 강제 종료
 
         let log = recent5Logs[i];
-
         let match = getObjById(matches, log.match_id); // i 번째 매치
         let homeTeam = getObjById(teams, match.home_team_id);
         let awayTeam = getObjById(teams, match.away_team_id);
         let bet = getObjById(bets, log.bet_id);
 
-        let homeTeamName = homeTeam.name;
-        let awayTeamName = awayTeam.name;
-        let betType = bet.type.slice(0,3);
+        let homeTeamName = homeTeam.name; // 홈팀 이름
+        let awayTeamName = awayTeam.name; // 원정팀 이름
+        let betType = bet.type.slice(0,3); // 베팅 종목 ("승무패", "선제골", "스코어")
         let betContentRaw = log.betContent; // "home", "away", "3:1", ...
-        let betContent;
-        let betAmount = Number(log.betAmount);
+        let betContent; // 베팅 내용 ("홈팀 승", "2:1" , etc...)
+        let betAmount = Number(log.betAmount); // 베팅 금액
         let payout = log.payout;
         let isSuccess = log.isSuccess;
         let valueRaw = isSuccess ? payout - betAmount : -betAmount;
         let value = addSignAndLocaleString(valueRaw);
 
-        switch(betType){
+        switch(betType){ // 이 switch에서 betContent 정의 (betType에 따른 betContentRaw를 betContent에 분기 삽입)
             case "승무패" :
                 if(betContentRaw == "home") betContent = "홈팀 승";
                 else if(betContentRaw == "away") betContent = "원정팀 승";
@@ -227,20 +228,24 @@ function printBettingHistory(){
                 break;
         }
 
-        let color = value[0] == '+' ? "#10b981" : "red";
-
+        let color = value[0] == '+' ? "#10b981" : "red"; // 음수/양수에 따라 색깔 지정
         boxlistHtml += `<div class="box">
                     <span class="box-title">${homeTeamName} vs ${awayTeamName}</span>
                     <span class="box-meta">${betType} / ${betContent}</span>
                     <span class="box-value" style="color: ${color}">${value}</span>
                 </div>`;
-
     }
     
     // [3] box-list에 html 주입
     boxlistDom.innerHTML = boxlistHtml;
+}
 
-    // [4] statList에 필요한 총 베팅 금액, 수익률, 최고 수익금
+function printStats(){
+    // [1] .stat-list dom 가져오기
+    let statlistDom = document.querySelector(".stat-list");
+    // [2] userLogs 가져옴
+    let userLogs = getUserLogs(me.id);
+    // [3] statList에 필요한 총 베팅 금액, 수익률, 최고 수익금
     let allBetAmountsRaw = 0; // 총 베팅 금액
     for(let i = 0; i < userLogs.length; i++){
         allBetAmountsRaw += Number(userLogs[i].betAmount);
@@ -279,7 +284,6 @@ function printBettingHistory(){
                         </div>`;
 
     statlistDom.innerHTML = statlistHtml;
-    
 }
 
 function addSignAndLocaleString(rawNumber){ // 음양수 기호 붙이고 3자리수마다 콤마 붙임
@@ -289,4 +293,5 @@ function addSignAndLocaleString(rawNumber){ // 음양수 기호 붙이고 3자�
 
 // initMockLog(); // 테스트용
 initAssetChart(); // 자산 흐름 그래프 띄우기
-printBettingHistory(); // 최근 5회 베팅 기록 띄우기
+printRecentHistory(); // 최근 5회 베팅 기록 띄우기
+printStats(); // 스탯 띄우기
