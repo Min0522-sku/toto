@@ -10,8 +10,8 @@ async function loadHTML(selector, url) {
 }
 
 document.addEventListener("DOMContentLoaded", async() => {
-    await loadHTML("#header", "/html/common/header.html");
-    await loadHTML("#footer", "/html/common/footer.html");
+    await loadHTML("#header", "../html/common/header.html");
+    await loadHTML("#footer", "../html/common/footer.html");
 
     let userName = JSON.parse(localStorage.getItem("me")).name || "홍길동";
     document.querySelector(".meta-name").innerHTML = `${userName} 님 환영합니다.`;
