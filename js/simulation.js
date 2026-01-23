@@ -12,7 +12,7 @@ const me = JSON.parse(localStorage.getItem("me"));
 const currentUserId = me ? me.id : 1;
 // 내 최신 배팅 내역 가져오기
 let myLogs = [];
-// 1. userLogs 전체를 돌면서 내 아이디랑 같은 것만 myLogs에 담기
+// 1. userLogs 전체를 돌면서 내 아이디랑 같은 것만 myLogs에 담기    
 for (let i = 0; i < userLogs.length; i++) {
     if (userLogs[i].user_id === currentUserId) {
         myLogs.push(userLogs[i]);
@@ -23,42 +23,21 @@ for (let i = 0; i < userLogs.length; i++) {
 let currentBetLog = null;
 if (myLogs.length > 0) {
     currentBetLog = myLogs[myLogs.length - 1];
-    
-    // [수정 2] ★ 친구 데이터 번역기 (Parsing) ★
-    // 친구가 "HOME승: 1.55"로 저장한 걸 내 코드("home")에 맞게 변환
-    
-    // 1. 변수명 통일 (친구: betContent, 나: bet_content)
-    let rawContent = currentBetLog.betContent || currentBetLog.bet_content;
-    let fixedContent = rawContent;
-    let extractedOdds = 1.0;
-
-    // 2. 승무패(1번)일 때 텍스트 변환 & 배당률 추출
-    if (currentBetLog.bet_id == 1) { // 문자열일 수도 있어서 == 사용
-        if (rawContent.includes("HOME")) fixedContent = "home";
-        else if (rawContent.includes("AWAY")) fixedContent = "away";
-        else if (rawContent.includes("무승부")) fixedContent = "draw";
-
-        // 배당률 숫자 뽑기 (예: "HOME승: 1.55" -> 1.55)
-        if (rawContent.includes(":")) {
-            let parts = rawContent.split(":");
-            extractedOdds = parseFloat(parts[1].trim());
-        }
+    if (!currentBetLog.betContent && currentBetLog.bet_content) {
+        currentBetLog.betContent = currentBetLog.bet_content;
     }
     
-    // 변환된 값을 내 로직이 사용하는 변수에 넣어줌
-    currentBetLog.bet_content = fixedContent; 
-    currentBetLog.odds = extractedOdds;
-    
-    console.log("번역된 배팅 정보:", currentBetLog);
+    console.log(`배팅 정보 로드 완료: ${currentBetLog.betContent}`);
 }
-// ★ 테스트 데이터 생성 (bet_content 추가)
+
+// ★ 테스트 데이터 생성 (betContent 사용)
 let currentUser = null;
 if (!currentBetLog) {
     console.warn("⚠️ 배팅 내역이 없어 테스트 모드로 실행합니다.");
     currentBetLog = { 
         id: 999, user_id: 1, match_id: 16, 
-        bet_id: 1,          // 1: 승무패, 2: 선제골, 3: 스코어
-        bet_content: "home", // "home"/"draw"/"away" or "3:1"
+        bet_id: 1,          
+        betContent: "home",
         betAmount: 50000, odds: 1.8, isSuccess: null 
     };
     currentUser = { id: 1, name: "박지훈", money: 100000 };
@@ -230,13 +209,22 @@ function startSimulation() {
                 showMatchResult();        // 화면 표시
             }, 1000); 
         }
-    }, 100); // 0.1초 단위
+    }, 200); // 0.1초 단위
 }
 
 // ============================================================
 // [6] ★ 결과 정산 
 // ============================================================
 let finalProfit = 0; 
+function getWinrate(home_offense, home_defense, away_offense, away_defense){
+    let diff = (home_offense - away_defense) + (home_defense - away_offense);
+    let home_adventage = 0.05; 
+    let responsiveness = 0.005; 
+    let home_win_prob = 0.5 + diff * responsiveness + home_adventage; 
+    if(home_win_prob < 0.05) home_win_prob = 0.05;
+    else if(home_win_prob > 0.95) home_win_prob = 0.95;
+    return home_win_prob;
+}
 
 function calculateAndSaveResult() {
     // 1. 경기 결과 승패 판별
@@ -249,7 +237,7 @@ function calculateAndSaveResult() {
     // 2. 배팅 성공 여부 판별
     let isSuccess = false;
     const betId = Number(currentBetLog.bet_id);
-    const userPick = currentBetLog.bet_content; 
+    const userPick = currentBetLog.betContent; 
 
     // 배팅 타입별 조건
     if (betId === 1) {
@@ -263,11 +251,27 @@ function calculateAndSaveResult() {
     }
 
     // 3. 돈 계산
-    let odds = currentBetLog.odds || 1.0; 
-    if (betId === 2) {
-        odds = 10.0;
-    } else if (betId === 3) {
-        odds = 20.0;
+    let odds = 1.0; 
+
+    if (betId === 1) {
+        // [승무패] 승률 기반 자동 계산
+        const hRate = Math.round(getWinrate(homeTeam.offense, homeTeam.defense, awayTeam.offense, awayTeam.defense) * 100);
+        
+        if (userPick === "home") {
+            odds = Number((100 / hRate).toFixed(2));
+        } else if (userPick === "away") {
+            const aRate = 100 - hRate;
+            odds = Number((100 / aRate).toFixed(2));
+        } else {
+            // 무승부는 3.50으로 고정
+            odds = 3.50; 
+        }
+    } 
+    else if (betId === 2) {
+        odds = 10.0; // 선제골 고정
+    } 
+    else if (betId === 3) {
+        odds = 20.0; // 스코어 고정
     }
 
     const payout = isSuccess ? Math.floor(currentBetLog.betAmount * odds) : 0;
@@ -287,7 +291,8 @@ function calculateAndSaveResult() {
     if (targetMatch) {
         targetMatch.status = "경기 종료";
         targetMatch.result = actualScoreString;
-        targetMatch.match_date = todayDate; // 경기 치른 날짜 저장  // date로 통일
+        targetMatch.date = todayDate; // 경기 치른 날짜 저장
+        targetMatch.participantCount = Math.floor(Math.random() * 200) + 1;  
     }
 
     // (2) 배팅 로그 업데이트
@@ -303,23 +308,34 @@ function calculateAndSaveResult() {
 
     // 6. DB 저장 (로컬스토리지 Commit)
     if (userLogs.length > 0) {
+        if (me) {
+            // me와 currentUser를 동기화해서 저장
+            localStorage.setItem("me", JSON.stringify(currentUser));
+        }
+
+        // 전체 유저 목록(users)을 돌면서 '나(currentUser.id)'를 찾아서 최신화
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id === currentUser.id) {
+                users[i].money = currentUser.money; // 여기서 돈을 똑같이 맞춰줌
+                break; 
+            }
+        }
+        localStorage.setItem("user", JSON.stringify(users));
+
+
+        // 나머지 데이터 저장
         localStorage.setItem("match", JSON.stringify(matches));
         localStorage.setItem("userLog", JSON.stringify(userLogs));
-        localStorage.setItem("user", JSON.stringify(users));// users 가 user 객체에 안들어가는중
-        console.log(currentUser);
-        localStorage.setItem("me", JSON.stringify(currentUser) );
 
         const existingLogs = JSON.parse(localStorage.getItem("log")) || [];
         
-        // gameLogBuffer(이번 경기 로그들)를 하나씩 꺼내서 기존 로그에 추가
         for (let i = 0; i < gameLogBuffer.length; i++) {
             existingLogs.push(gameLogBuffer[i]);
         }
 
-        // 합쳐진 로그 저장
         localStorage.setItem("log", JSON.stringify(existingLogs));
 
-        console.log(`✅ 정산 완료. 날짜: ${todayDate}, 로그 ${gameLogBuffer.length}개 저장됨.`);
+        console.log(`✅ 정산 완료. 획득상금: ${payout}, 현재잔액: ${currentUser.money}`);
     }
 }
 
@@ -377,7 +393,7 @@ function showMatchResult() {
 
     // 금액 및 스타일
     const isSuccess = currentBetLog.isSuccess; // 위에서 계산됨
-    const displayAmount = isSuccess ? Math.floor(currentBetLog.betAmount * currentBetLog.odds) : -currentBetLog.betAmount;
+   const displayAmount = isSuccess ? currentBetLog.payout : -currentBetLog.betAmount;
     const profitClass = isSuccess ? "profit-win" : "profit-lose";
     const profitSign = isSuccess ? "+" : "";
 
