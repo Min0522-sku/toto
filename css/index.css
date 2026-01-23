@@ -5,7 +5,15 @@
     align-items: center;
 }
 .logo-img{
-    width: 300px;
+    width: 200px;
+    margin: 0 auto;
+}
+.logo-title-text{
+  font-size: 56px;
+  font-weight: 900;
+  color: #360D3A;
+  font-style: italic;
+  letter-spacing: 0.04em;
 }
 .login-card{
     width: 360px;
