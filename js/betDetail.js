@@ -212,7 +212,7 @@ function bettingBtn(){
 
     userLog.push(betUserLog)
     localStorage.setItem('userLog' , JSON.stringify(userLog))
-    location.href="/html/simulation.html"
+    location.href="../html/simulation.html"
 }
 
 

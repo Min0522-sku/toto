@@ -1,24 +1,26 @@
+const projectName = "toto";
+
 const league = [
-    { id: 1, name: "EPL", imageUrl: "/assets/images/leagues/epl.svg"},
-    { id: 2, name: "La Liga", imageUrl: "/assets/images/leagues/laliga.png"},
-    { id: 3, name: "Bundesliga", imageUrl: "/assets/images/leagues/bundesliga.svg"},
-    { id: 4, name: "Champions League", imageUrl: "/assets/images/leagues/champions_league.png"},
-    { id: 5, name: "Europa League", imageUrl: "/assets/images/leagues/europa_league.png"},
+    { id: 1, name: "EPL", imageUrl: `/${projectName}/assets/images/leagues/epl.svg`},
+    { id: 2, name: "La Liga", imageUrl: `/${projectName}/assets/images/leagues/laliga.png`},
+    { id: 3, name: "Bundesliga", imageUrl: `/${projectName}/assets/images/leagues/bundesliga.svg`},
+    { id: 4, name: "Champions League", imageUrl: `/${projectName}/assets/images/leagues/champions_league.png`},
+    { id: 5, name: "Europa League", imageUrl: `/${projectName}/assets/images/leagues/europa_league.png`},
 ]
 
 const team = [
-    { id: 1, league_id: 1, name: "리버풀", imageUrl: "/assets/images/teams/epl/1.png", offense: 92, defense: 99, avgScored: 2.35, avgConceded: 0.65, leagueRank: 1, wins: 15, draws: 3, losses: 2 },
-    { id: 2, league_id: 1, name: "맨시티", imageUrl: "/assets/images/teams/epl/2.png", offense: 98, defense: 65, avgScored: 2.45, avgConceded: 1.35, leagueRank: 3, wins: 12, draws: 4, losses: 5 },
-    { id: 3, league_id: 1, name: "아스널", imageUrl: "/assets/images/teams/epl/3.png", offense: 88, defense: 90, avgScored: 2.1, avgConceded: 0.95, leagueRank: 2, wins: 13, draws: 5, losses: 3 },
-    { id: 4, league_id: 1, name: "첼시", imageUrl: "/assets/images/teams/epl/4.png", offense: 86, defense: 70, avgScored: 2.05, avgConceded: 1.25, leagueRank: 4, wins: 11, draws: 6, losses: 4 },
-    { id: 5, league_id: 1, name: "토트넘", imageUrl: "/assets/images/teams/epl/5.png", offense: 90, defense: 55, avgScored: 2.2, avgConceded: 1.55, leagueRank: 7, wins: 10, draws: 3, losses: 8 },
-    { id: 6, league_id: 1, name: "브라이튼", imageUrl: "/assets/images/teams/epl/6.png", offense: 68, defense: 85, avgScored: 1.55, avgConceded: 1.1, leagueRank: 5, wins: 10, draws: 6, losses: 5 },
-    { id: 7, league_id: 1, name: "A.빌라", imageUrl: "/assets/images/teams/epl/7.png", offense: 75, defense: 62, avgScored: 1.7, avgConceded: 1.4, leagueRank: 6, wins: 10, draws: 5, losses: 6 },
-    { id: 8, league_id: 1, name: "뉴캐슬", imageUrl: "/assets/images/teams/epl/8.png", offense: 70, defense: 75, avgScored: 1.5, avgConceded: 1.2, leagueRank: 8, wins: 9, draws: 6, losses: 6 },
-    { id: 9, league_id: 1, name: "맨유", imageUrl: "/assets/images/teams/epl/9.png", offense: 60, defense: 68, avgScored: 1.25, avgConceded: 1.3, leagueRank: 9, wins: 8, draws: 6, losses: 7 },
-    { id: 10, league_id: 1, name: "에버튼", imageUrl: "/assets/images/teams/epl/10.png", offense: 67, defense: 58, avgScored: 1.45, avgConceded: 1.5, leagueRank: 10, wins: 8, draws: 4, losses: 9 },
-    { id: 11, league_id: 2, name: "R.마드리드", imageUrl: "/assets/images/teams/laliga/1.png", offense: 98, defense: 88, avgScored: 3.24, avgConceded: 0.8, leagueRank: 1, wins: 14, draws: 2, losses: 4 },
-    { id: 12, league_id: 3, name: "B.뮌헨", imageUrl: "/assets/images/teams/bundesliga/1.png", offense: 92, defense: 92, avgScored: 2.2, avgConceded: 0.91, leagueRank: 1, wins: 16, draws: 3, losses: 1 },
+    { id: 1, league_id: 1, name: "리버풀", imageUrl: `/${projectName}/assets/images/teams/epl/1.png`, offense: 92, defense: 99, avgScored: 2.35, avgConceded: 0.65, leagueRank: 1, wins: 15, draws: 3, losses: 2 },
+    { id: 2, league_id: 1, name: "맨시티", imageUrl: `/${projectName}/assets/images/teams/epl/2.png`, offense: 98, defense: 65, avgScored: 2.45, avgConceded: 1.35, leagueRank: 3, wins: 12, draws: 4, losses: 5 },
+    { id: 3, league_id: 1, name: "아스널", imageUrl: `/${projectName}/assets/images/teams/epl/3.png`, offense: 88, defense: 90, avgScored: 2.1, avgConceded: 0.95, leagueRank: 2, wins: 13, draws: 5, losses: 3 },
+    { id: 4, league_id: 1, name: "첼시", imageUrl: `/${projectName}/assets/images/teams/epl/4.png`, offense: 86, defense: 70, avgScored: 2.05, avgConceded: 1.25, leagueRank: 4, wins: 11, draws: 6, losses: 4 },
+    { id: 5, league_id: 1, name: "토트넘", imageUrl: `/${projectName}/assets/images/teams/epl/5.png`, offense: 90, defense: 55, avgScored: 2.2, avgConceded: 1.55, leagueRank: 7, wins: 10, draws: 3, losses: 8 },
+    { id: 6, league_id: 1, name: "브라이튼", imageUrl: `/${projectName}/assets/images/teams/epl/6.png`, offense: 68, defense: 85, avgScored: 1.55, avgConceded: 1.1, leagueRank: 5, wins: 10, draws: 6, losses: 5 },
+    { id: 7, league_id: 1, name: "A.빌라", imageUrl: `/${projectName}/assets/images/teams/epl/7.png`, offense: 75, defense: 62, avgScored: 1.7, avgConceded: 1.4, leagueRank: 6, wins: 10, draws: 5, losses: 6 },
+    { id: 8, league_id: 1, name: "뉴캐슬", imageUrl: `/${projectName}/assets/images/teams/epl/8.png`, offense: 70, defense: 75, avgScored: 1.5, avgConceded: 1.2, leagueRank: 8, wins: 9, draws: 6, losses: 6 },
+    { id: 9, league_id: 1, name: "맨유", imageUrl: `/${projectName}/assets/images/teams/epl/9.png`, offense: 60, defense: 68, avgScored: 1.25, avgConceded: 1.3, leagueRank: 9, wins: 8, draws: 6, losses: 7 },
+    { id: 10, league_id: 1, name: "에버튼", imageUrl: `/${projectName}/assets/images/teams/epl/10.png`, offense: 67, defense: 58, avgScored: 1.45, avgConceded: 1.5, leagueRank: 10, wins: 8, draws: 4, losses: 9 },
+    { id: 11, league_id: 2, name: "R.마드리드", imageUrl: `/${projectName}/assets/images/teams/laliga/1.png`, offense: 98, defense: 88, avgScored: 3.24, avgConceded: 0.8, leagueRank: 1, wins: 14, draws: 2, losses: 4 },
+    { id: 12, league_id: 3, name: "B.뮌헨", imageUrl: `/${projectName}/assets/images/teams/bundesliga/1.png`, offense: 92, defense: 92, avgScored: 2.2, avgConceded: 0.91, leagueRank: 1, wins: 16, draws: 3, losses: 1 },
     
 ]
 
@@ -96,6 +98,7 @@ const userLog = [
 ]
 
 const db = {
+    projectName,
     league,
     team,
     user,

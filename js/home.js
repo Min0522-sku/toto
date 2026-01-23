@@ -37,7 +37,7 @@ function printTodayMatch() {
         // [3-1] 스포츠이미지, 리그이미지, 리그명, 홈팀이미지, 홈팀이름, 원정팀이미지, 원정팀이름, 홈팀승률(계산), 원정팀승률(계산) 가져오기
         let match = todayMatches[i];
 
-        let sportImgUrl = "/assets/images/sports/Football.svg"; // 스포츠는 우선 축구만 지원하므로 하드코딩
+        let sportImgUrl = "../assets/images/sports/Football.svg"; // 스포츠는 우선 축구만 지원하므로 하드코딩
 
         let league = getObjById(db.league, match.league_id); // match 객체에 있는 league_id 외래키로 해당 리그 객체를 찾음
         let leagueImgUrl = league.imageUrl;
@@ -79,7 +79,7 @@ function printTodayMatch() {
                     <div class="team-winrate">${awayPercent}%</div>
                 </li>
                 <li class="table-item betBtnContainer">
-                    <button onclick="location.href='/html/betDetail.html?id=${match.id}'" class="betBtn">베팅하기</button>
+                    <button onclick="location.href='../html/betDetail.html?id=${match.id}'" class="betBtn">베팅하기</button>
                 </li>`;
         html += `</ul>`;
     }
@@ -117,7 +117,7 @@ function printPastMatch() {
         let match = pastMatches[i];
 
         let date = match.date.slice(5);
-        let sportImgUrl = "/assets/images/sports/Football.svg"; // 스포츠는 우선 축구만 지원하므로 하드코딩
+        let sportImgUrl = "../assets/images/sports/Football.svg"; // 스포츠는 우선 축구만 지원하므로 하드코딩
 
         let league = getObjById(db.league, match.league_id); // match 객체에 있는 league_id 외래키로 해당 리그 객체를 찾음
         let leagueImgUrl = league.imageUrl;
