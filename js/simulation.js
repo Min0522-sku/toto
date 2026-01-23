@@ -287,7 +287,7 @@ function calculateAndSaveResult() {
     if (targetMatch) {
         targetMatch.status = "경기 종료";
         targetMatch.result = actualScoreString;
-        targetMatch.match_date = todayDate; // 경기 치른 날짜 저장
+        targetMatch.match_date = todayDate; // 경기 치른 날짜 저장  // date로 통일
     }
 
     // (2) 배팅 로그 업데이트
@@ -305,7 +305,7 @@ function calculateAndSaveResult() {
     if (userLogs.length > 0) {
         localStorage.setItem("match", JSON.stringify(matches));
         localStorage.setItem("userLog", JSON.stringify(userLogs));
-        localStorage.setItem("user", JSON.stringify(users));
+        localStorage.setItem("user", JSON.stringify(users));// users 가 user 객체에 안들어가는중
         console.log(currentUser);
         localStorage.setItem("me", JSON.stringify(currentUser) );
 
