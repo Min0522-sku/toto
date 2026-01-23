@@ -189,16 +189,16 @@ function printBettingHistory(){
     // [2] localStorage에서 필요한 데이터 가져옴
     // 홈팀이름, 원정팀이름, 베팅종목, 베팅내용, 베팅금액, 수익금
     let userLogs = getUserLogs(me.id);
-        console.log(userLogs);
     let matches = getMatches();
     let teams = getTeams();
     let bets = getBets();
 
     let recent5Logs = userLogs.slice().sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt)).slice(-5);
-        console.log(recent5Logs);
     
     let boxlistHtml = ``;
     for(let i = 0; i < 5; i++){
+        if(recent5Logs.length < i + 1) break;
+
         let log = recent5Logs[i];
 
         let match = getObjById(matches, log.match_id); // i 번째 매치
@@ -211,7 +211,7 @@ function printBettingHistory(){
         let betType = bet.type.slice(0,3);
         let betContentRaw = log.betContent; // "home", "away", "3:1", ...
         let betContent;
-        let betAmount = log.betAmount;
+        let betAmount = Number(log.betAmount);
         let payout = log.payout;
         let isSuccess = log.isSuccess;
         let valueRaw = isSuccess ? payout - betAmount : -betAmount;
@@ -238,14 +238,15 @@ function printBettingHistory(){
                 break;
         }
 
+        let color = value[0] == '+' ? "#10b981" : "red";
+
         boxlistHtml += `<div class="box">
                     <span class="box-title">${homeTeamName} vs ${awayTeamName}</span>
                     <span class="box-meta">${betType} / ${betContent}</span>
-                    <span class="box-value">${value}</span>
+                    <span class="box-value" style="color: ${color}">${value}</span>
                 </div>`;
 
     }
-        console.log(boxlistHtml);
     
     // [3] box-list에 html 주입
     boxlistDom.innerHTML = boxlistHtml;
@@ -253,13 +254,14 @@ function printBettingHistory(){
     // [4] statList에 필요한 총 베팅 금액, 수익률, 최고 수익금
     let allBetAmountsRaw = 0; // 총 베팅 금액
     for(let i = 0; i < userLogs.length; i++){
-        allBetAmountsRaw += userLogs[i].betAmount;
+        allBetAmountsRaw += Number(userLogs[i].betAmount);
     }
 
     let RTPRaw; // 수익률 (충전한 금액 대비 총 수익금)
     let chargedMoney = 100000; // 나중에 '돈 충전' 기능이 생기면 충전한 내역만큼 여기에 추가해야 함.
     let withdrawnMoney = 0; // 나중에 '돈 출금' 기능이 생기면 그 내역만큼 여기에 추가해야 함
     let earnedMoney = me.money + withdrawnMoney - chargedMoney; // 수익금
+
     RTPRaw = ((earnedMoney / chargedMoney) * 100).toFixed(1); // ex: 55.3
     
     let maxReturnRaw = 0; // 최고 수익금
@@ -273,13 +275,14 @@ function printBettingHistory(){
     RTP = addSignAndLocaleString(RTPRaw);
     maxReturn = addSignAndLocaleString(maxReturnRaw);
 
+    let color = RTP[0] == '+' ? "#16a34a" : "red";
     let statlistHtml = `<div class="stat">
                             <span class="stat-label">총 베팅 금액</span>
                             <span class="stat-value">${allBetAmounts}</span>
                         </div>
                         <div class="stat">
                             <span class="stat-label">수익률</span>
-                            <span class="stat-value positive">${RTP}%</span>
+                            <span class="stat-value" style="color:${color}">${RTP}%</span>
                         </div>
                         <div class="stat">
                             <span class="stat-label">최고 수익금</span>
