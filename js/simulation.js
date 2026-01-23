@@ -209,7 +209,7 @@ function startSimulation() {
                 showMatchResult();        // 화면 표시
             }, 1000); 
         }
-    }, 200); // 0.1초 단위
+    }, 100); // 0.1초 단위
 }
 
 // ============================================================
@@ -375,7 +375,7 @@ function showMatchResult() {
 
     // 배팅 내용 표시 텍스트 만들기
     const betId = Number(currentBetLog.bet_id);
-    const userPick = currentBetLog.bet_content;
+    const userPick = currentBetLog.betContent;
     let betDisplayCheck = "";
 
     if (betId === 1) {
