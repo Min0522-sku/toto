@@ -1,7 +1,7 @@
 import db from "./common/database.js";
 
 let me = JSON.parse(localStorage.getItem("me"));
-document.querySelector(".username").innerHTML = `${me.name} 님`;
+document.querySelector(".username").innerHTML = `${me.name}님의 현재 자금 : ${me.money.toLocaleString()+ "원"}`;
 
 // initMockLog(); // 테스트용
 initAssetChart(); // 자산 흐름 그래프 띄우기
