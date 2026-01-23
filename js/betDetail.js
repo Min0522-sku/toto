@@ -26,7 +26,6 @@
         }
     }
 
-
     const hTeamId = targetMatch.home_team_id;
     const aTeamId = targetMatch.away_team_id;
 
@@ -168,31 +167,31 @@ if(userLog ==null){
     userLog =[];
 }
 
-function bettingBtn(){
+function bettingBtn(){ //배팅 버튼을 눌렀을때 함수
     
-    const amountInput = document.querySelector(".betAmount")
-    const amountValue = Number(amountInput.value)
+    const amountInput = document.querySelector(".betAmount") //배팅 금액 가져오기
+    const amountValue = Number(amountInput.value) //amountValue에 배팅 금액 넣기
 
-    if(isSelected == false){
+    if(isSelected == false){ //배팅 종목을 선택 안했을때 리턴
         alert("배팅 종목을 선택해 주세요!");
         return;
     }
-    if(amountValue <= 0 || amountValue == null || amountValue % 1 !== 0 ){
+    if(amountValue <= 0 || amountValue == null || amountValue % 1 !== 0 ){ //배팅 금액 입력 조건
         alert("금액을 정확히 입력해주세요(숫자만가능)")
         return;
     }
-    const user = JSON.parse(localStorage.getItem('user'))
-    const userMoney = Number(localStorage.getItem('user').money)
-    if(userMoney < amountValue){
+    const user = JSON.parse(localStorage.getItem('user')) //로컬에있는 user정보 가져오기
+    const userMoney = Number(localStorage.getItem('user').money) //가져온 user 정보에서 money객체 가져오기
+    if(userMoney < amountValue){ //user의 money가 배팅한 금액 보다 적으면 리턴
         alert("잔액이 부족합니다")
         return;
     }
     
-    if(betId == 3){
-        let inputScore = document.querySelector("#score-text")
-        betContent = inputScore.value ;
-        const scoreType = /^[0-9]+:[0-9]+$/ ;
-        if(!scoreType.test(betContent)){ console.log(betContent) ;
+    if(betId == 3){ //스코어 맞추기 종목에서 숫자:(콜론)숫자의 형식으로만 입력되게끔
+        let inputScore = document.querySelector("#score-text") 
+        betContent = inputScore.value ; //사용자가 스코어 맞추기 인풋박스에 적은 값을 betContent에 넣음
+        const scoreType = /^[0-9]+:[0-9]+$/ ; //정규표현식 사용
+        if(!scoreType.test(betContent)){ console.log(betContent) ; //betContent가 정규표현식에 어긋날경우 리턴
             alert("스코어 형식을 맞추세요(예: 2:1)")
             return;
         }
