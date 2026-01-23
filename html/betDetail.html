@@ -16,19 +16,19 @@
     <div id="header"></div>
 
     <div id="main">
-        <div id="gameinfo">
+        <div id="gameinfo" class="gameinfo-card">
             <div class="team home">
-            <h2>HOME</h2>
-            <div id="home-teamimg"><img src="../assets/images/teams/1.png"/></div>
-            <h2 class="home-team-name">리버풀</h2>
+            <h2 class="team-label">HOME</h2>
+            <div id="home-teamimg" class="team-image"><img src="../assets/images/teams/1.png"/></div>
+            <h2 class="home-team-name team-name">리버풀</h2>
             </div>
 
-            <h2>VS</h2>
+            <h2 class="vs-badge">VS</h2>
             
             <div class="team away">
-            <h2>AWAY</h2>
-            <div id="away-teamimg"><img src="../assets/images/teams/2.png" /></div>
-            <h2 class="away-team-name">맨체스터 시티</h2>
+            <h2 class="team-label">AWAY</h2>
+            <div id="away-teamimg" class="team-image"><img src="../assets/images/teams/2.png" /></div>
+            <h2 class="away-team-name team-name">맨체스터 시티</h2>
             </div>
         </div>
 
@@ -57,11 +57,11 @@
         </div>
 
 
-        <div id="graph">
+        <div id="graph" class="winrate-card">
             <span class="winRate home"> 맨체스터 유나이티드 승률: 30% </span><span class="winRate away">맨체스터 시티 승률: 70%</span>
         </div>
 
-        <div id="bet">
+        <div id="bet" class="bet-card">
             <div class="bet-section">
                 <div class="bet-top">
                     <button id="home" type="button" class="bet-button btn1" onclick="homeCheck(this)"> HOME승: 3.0</button>
@@ -87,13 +87,13 @@
             </div>
         </div>
 
-        <div id="bet-money">
+        <div id="bet-money" class="bet-money-card">
             <div class="money-box">
                 <span>배팅할 금액:</span>
                 <input class="betAmount" type="text" placeholder="50000" />
                 <span>원</span>
             </div>
-             <button type="button" onclick="bettingBtn()">배팅하기</button>
+             <button type="button" class="bet-submit" onclick="bettingBtn()">배팅하기</button>
         </div>
     </div>
 
