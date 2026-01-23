@@ -1,11 +1,7 @@
 import db from "./common/database.js";
 
 let me = JSON.parse(localStorage.getItem("me"));
-document.querySelector(".username").innerHTML = `${me.name} 님`;
-
-// initMockLog(); // 테스트용
-initAssetChart(); // 자산 흐름 그래프 띄우기
-printBettingHistory(); // 최근 5회 베팅 기록 띄우기
+document.querySelector(".username").innerHTML = `${me.name}님의 현재 자금 : ${me.money.toLocaleString()+ "원"}`;
 
 function initMockLog(){ // 테스트용
     localStorage.removeItem("userLog");
@@ -56,7 +52,7 @@ function buildAssetSeries(logs, matches, teams) {
         matches.map((match) => [Number(match.id), match])
     );
 
-    let total = 0;
+    let total = 100000; // 초기 금액 100,000원
     const series = [];
     const labels = [];
 
@@ -87,80 +83,83 @@ function buildAssetSeries(logs, matches, teams) {
     return { series, labels };
 }
 
+let assetChartInstance = null;
+
 function drawAssetChart(canvas, series, labels) {
+    if (!window.Chart) return;
+
+    if (assetChartInstance) {
+        assetChartInstance.destroy();
+    }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const dpr = window.devicePixelRatio || 1;
-    const rect = canvas.getBoundingClientRect();
-    const width = rect.width || 560;
-    const height = rect.height || 260;
-
-    canvas.width = width * dpr;
-    canvas.height = height * dpr;
-    ctx.scale(dpr, dpr);
-
-    ctx.clearRect(0, 0, width, height);
-
-    const padding = { left: 60, right: 16, top: 16, bottom: 40 };
-    const chartWidth = width - padding.left - padding.right;
-    const chartHeight = height - padding.top - padding.bottom;
-
-    // axes
-    ctx.strokeStyle = "#ffffff";
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.moveTo(padding.left, padding.top);
-    ctx.lineTo(padding.left, height - padding.bottom);
-    ctx.lineTo(width - padding.right, height - padding.bottom);
-    ctx.stroke();
-
-    const min = Math.min(...series);
-    const max = Math.max(...series);
-    const range = max - min || 1;
-
-    // y-axis labels
-    ctx.fillStyle = "#111827";
-    ctx.font = "11px sans-serif";
-    ctx.textAlign = "right";
-    ctx.textBaseline = "middle";
-
-    const mid = min + range / 2;
-    const yTop = padding.top;
-    const yMid = padding.top + chartHeight / 2;
-    const yBottom = padding.top + chartHeight;
-
-    ctx.fillText(formatAmount(max), padding.left - 12, yTop);
-    ctx.fillText(formatAmount(mid), padding.left - 12, yMid);
-    ctx.fillText(formatAmount(min), padding.left - 12, yBottom);
-
-    // line
-    ctx.strokeStyle = "#111827";
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    series.forEach((value, index) => {
-        const x =
-            padding.left +
-            (chartWidth * index) / Math.max(series.length - 1, 1);
-        const y =
-            padding.top +
-            chartHeight * (1 - (value - min) / range);
-        if (index === 0) ctx.moveTo(x, y);
-        else ctx.lineTo(x, y);
-    });
-    ctx.stroke();
-
-    // x-axis labels
-    ctx.fillStyle = "#111827";
-    ctx.font = "10px sans-serif";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "top";
-    labels.forEach((label, index) => {
-        const x =
-            padding.left +
-            (chartWidth * index) / Math.max(series.length - 1, 1);
-        const y = height - padding.bottom + 4;
-        drawMatchLabel(ctx, label, x, y, 12);
+    assetChartInstance = new Chart(ctx, {
+        type: "line",
+        data: {
+            labels,
+            datasets: [
+                {
+                    label: "자금 흐름",
+                    data: series,
+                    borderColor: "#111827",
+                    borderWidth: 2,
+                    tension: 0.35,
+                    pointRadius: 3,
+                    pointHoverRadius: 5,
+                    pointBackgroundColor: "#111827",
+                    fill: true,
+                    backgroundColor: "rgba(17, 24, 39, 0.08)",
+                },
+            ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                mode: "index",
+                intersect: false,
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                },
+                tooltip: {
+                    callbacks: {
+                        title: (items) => {
+                            const index = items[0]?.dataIndex ?? 0;
+                            const label = labels[index] || "";
+                            return label.replace(" vs ", "  vs  ");
+                        },
+                        label: (item) => {
+                            const value = item.parsed.y ?? 0;
+                            return `자금: ${formatAmount(value)}원`;
+                        },
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        display: false,
+                    },
+                },
+                y: {
+                    grid: {
+                        color: "rgba(255,255,255,0.7)",
+                    },
+                    ticks: {
+                        callback: (value) => formatAmount(value),
+                        color: "#6b7280",
+                        font: { size: 11 },
+                    },
+                },
+            },
+        },
     });
 }
 
@@ -168,17 +167,7 @@ function formatAmount(value) {
     return `${Math.round(value).toLocaleString("ko-KR")}`;
 }
 
-function drawMatchLabel(ctx, label, x, y, lineHeight) {
-    if (!label) return;
-    const parts = label.split(" vs ");
-    if (parts.length === 2) {
-        ctx.fillText(parts[0], x, y);
-        ctx.fillText("vs", x, y + lineHeight);
-        ctx.fillText(parts[1], x, y + lineHeight * 2);
-        return;
-    }
-    ctx.fillText(label, x, y);
-}
+function drawMatchLabel() {}
 
 
 function printBettingHistory(){
@@ -297,3 +286,7 @@ function addSignAndLocaleString(rawNumber){ // 음양수 기호 붙이고 3자�
     let isPositive = rawNumber >= 0;
     return isPositive ? "+" + rawNumber.toLocaleString() : rawNumber.toLocaleString();
 }
+
+// initMockLog(); // 테스트용
+initAssetChart(); // 자산 흐름 그래프 띄우기
+printBettingHistory(); // 최근 5회 베팅 기록 띄우기

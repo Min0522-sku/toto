@@ -2,51 +2,68 @@
     border: 1px solid red;
 } */
 
-.icon{
-    margin-top: 54px;
+.hero{
+    margin-top: 48px;
+    display: flex;
+    justify-content: center;
 }
 .icon-img{
-    width: 198px;
+    width: 180px;
     margin: 0 auto;
 }
 .game-table{
-    width: 556px;
+    width: 600px;
     margin: 0 auto;
 }
-.table{
-    border: 1px solid #d9d9d9;
-    box-shadow: 0 8px 24px rgba(16, 24, 40, 0.25);;
+.section-title{
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2937;
+}
+.match-table{
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 10px 24px rgba(16, 24, 40, 0.12);
     border-radius: 16px;
-    padding: 26px;
+    padding: 16px 18px;
     margin-top: 12px;
+    background: #ffffff;
 }
 .table-row{
     display: flex;
-    border: 1px solid black;
     justify-content: space-between;
-    padding: 8px 20px;
-    width: 504px;
+    padding: 10px 16px;
+    width: 100%;
+}
+.table-header{
+    background: #f9fafb;
+    border-radius: 12px;
+    font-weight: 700;
+}
+.table-body-row{
+    border-top: 1px solid #f3f4f6;
 }
 .table-item{
-    width: 68px;
-    font-size: 18px;
+    width: 80px;
+    font-size: 14px;
     text-align: center;
     margin: auto 0;
+    color: #374151;
 }
 .betBtnContainer{
     width: 86px;
 }
 .bettorsContainer{
-    width: 86px;
-    font-size: 14px;
+    width: 96px;
+    font-size: 12px;
+    color: #6b7280;
 }
 .league-img{
-    width: 48px;
+    width: 44px;
     margin: 0 auto;
 }
 .team-img{
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     margin: 0 auto;
     object-fit: contain;
 }
@@ -55,29 +72,37 @@
     margin-top: 6px;
 }
 .team-name{
-    font-size: 14px;
+    font-size: 13px;
     margin-top: 6px;
 }
 .team-winrate{
-    font-size: 10px;
+    font-size: 11px;
+    color: #6b7280;
 }
 .betBtn{
     background-color: #E96D22;
     width: inherit;
     height: inherit;
     color: white;
-    font-size: 16px;
+    font-size: 13px;
     border-radius: 10px;
-    border: 2px solid black;
-    padding: 4px;
-    box-shadow: 0 0 8px 0px gray;
+    border: 1px solid #E96D22;
+    padding: 6px;
+    box-shadow: 0 6px 14px rgba(233, 109, 34, 0.3);
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+.betBtn:hover{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 18px rgba(233, 109, 34, 0.35);
 }
 .result-text{
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
 }
 .divider{
     height: 1px;
-    background-color: #D9D9D9;
-    margin: 64px -16px;
+    background-color: #e5e7eb;
+    margin: 56px -16px;
 }

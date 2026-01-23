@@ -9,18 +9,21 @@
   #header {
     max-width: 1680px;
     height: 112px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eceff3;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 64px;
+    padding: 16px 48px;
     margin: 0 auto;
   }
   .header-left{
     display: flex;
+    align-items: center;
   }
   .header-right{
     display: flex;
+    align-items: center;
+    gap: 12px;
   }
   .logo-icon, .logo-title{
     height: 64px;
@@ -29,10 +32,60 @@
   .meta-name, .mypage{
     margin-left: 20px;
   }
+  .logo-title-text{
+    font-size: 56px;
+    font-weight: 900;
+    color: #360D3A;
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+  .meta-name{
+    font-size: 13px;
+    color: #6b7280;
+  }
+  .mypage a{
+    font-size: 13px;
+    color: #360D3A;
+    background: #f5f0f6;
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
 
   /* Footer */
   #footer{
     max-width: 1680px;
+    border-top: 1px solid #eee;
+    margin: 100px auto;
+    padding: 24px 64px;
+  }
+  .footer-inner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .footer-left{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .footer-logo{
+    height: 28px;
+    width: auto;
+  }
+  .footer-title{
+    font-size: 16px;
+    font-weight: 700;
+    color: #111827;
+  }
+  .footer-copy{
+    font-size: 12px;
+    color: #6b7280;
+  }
+  .footer-info{
+    font-size: 12px;
+    color: #6b7280;
+    margin-right: 12px;
   }
 
   

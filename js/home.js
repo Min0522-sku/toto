@@ -25,7 +25,7 @@ function printTodayMatch() {
     
     // [3] id=todayTable div (오늘의 경기) 에 html 주입
     let todayTable = document.querySelector("#todayTable");
-    let html = `<ul class="table-row">
+    let html = `<ul class="table-row table-header">
                     <li class="table-item">스포츠명</li>
                     <li class="table-item">리그</li>
                     <li class="table-item">홈팀</li>
@@ -58,8 +58,8 @@ function printTodayMatch() {
 
         // [3-2] html에 주입 후 innerHTML
 
-        if(i == 0) html += `<ul class="table-row" style="margin-top: 24px;">`; // 첫 번째 매치아이템은 헤더로부터 24px margin
-        else html += `<ul class="table-row">`; // 나머지 매치아이템은 위 아이템과 붙여서
+        if(i == 0) html += `<ul class="table-row table-body-row" style="margin-top: 24px;">`; // 첫 번째 매치아이템은 헤더로부터 24px margin
+        else html += `<ul class="table-row table-body-row">`; // 나머지 매치아이템은 위 아이템과 붙여서
 
         html += `<li class="table-item">
                     <img class="sports-img center" src="${sportImgUrl}">
@@ -96,10 +96,14 @@ function printPastMatch() {
             pastMatches.push(matches[i]);
     }
         console.log("past : ", pastMatches);
+
+    // [2-2] pastMatch를 date에 따라 오름차순 정렬
+    pastMatches.sort((a,b)=> new Date(a.date) - new Date(b.date));
     
     // [3] id=todayTable div (오늘의 경기) 에 html 주입
     let pastTable = document.querySelector("#pastTable");
-    let html = `<ul class="table-row">
+    let html = `<ul class="table-row table-header">
+                    <li class="table-item">날짜</li>
                     <li class="table-item">스포츠명</li>
                     <li class="table-item">리그</li>
                     <li class="table-item">홈팀</li>
@@ -109,9 +113,10 @@ function printPastMatch() {
                 </ul>`;
 
     for(let i = 0; i < pastMatches.length; i++){
-        // [3-1] 스포츠이미지, 리그이미지, 리그명, 홈팀이미지, 홈팀이름, 원정팀이미지, 원정팀이름, 경기 결과, 홈팀승률(계산), 원정팀승률(계산) 가져오기
+        // [3-1] 날짜, 스포츠이미지, 리그이미지, 리그명, 홈팀이미지, 홈팀이름, 원정팀이미지, 원정팀이름, 경기 결과, 홈팀승률(계산), 원정팀승률(계산) 가져오기
         let match = pastMatches[i];
 
+        let date = match.date.slice(5);
         let sportImgUrl = "/assets/images/sports/Football.svg"; // 스포츠는 우선 축구만 지원하므로 하드코딩
 
         let league = getObjById(db.league, match.league_id); // match 객체에 있는 league_id 외래키로 해당 리그 객체를 찾음
@@ -133,10 +138,13 @@ function printPastMatch() {
 
         // [3-2] html에 주입 후 innerHTML
 
-        if(i == 0) html += `<ul class="table-row" style="margin-top: 24px;">`; // 첫 번째 매치아이템은 헤더로부터 24px margin
-        else html += `<ul class="table-row">`; // 나머지 매치아이템은 위 아이템과 붙여서
+        if(i == 0) html += `<ul class="table-row table-body-row" style="margin-top: 24px;">`; // 첫 번째 매치아이템은 헤더로부터 24px margin
+        else html += `<ul class="table-row table-body-row">`; // 나머지 매치아이템은 위 아이템과 붙여서
 
         html += `<li class="table-item">
+                    <span class="match-date">${date}</span>
+                </li>
+                <li class="table-item">
                     <img class="sports-img center" src="${sportImgUrl}">
                 </li>
                 <li class="table-item">
