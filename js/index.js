@@ -47,6 +47,6 @@ function login(){
     localStorage.setItem("me", JSON.stringify(me));
 
     // [3] home 화면으로 link
-    location.href = "/html/home.html";
+    location.href = "./html/home.html";
 }
 window.login = login;
