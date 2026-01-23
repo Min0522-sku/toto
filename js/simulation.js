@@ -302,8 +302,8 @@ function calculateAndSaveResult() {
     }
 
     // (3) 유저 돈 업데이트
-    if (currentUser && isSuccess) {
-        currentUser.money += payout;
+    if (currentUser) {
+        currentUser.money = currentUser.money - currentBetLog.betAmount + payout;
     }
 
     // 6. DB 저장 (로컬스토리지 Commit)
