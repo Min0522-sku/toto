@@ -1,5 +1,5 @@
 /* Layout width */
-.main {
+#main {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 16px;
@@ -54,7 +54,7 @@
 #gameinfo{
     display: flex;
     
-    width: 1280px;
+    max-width: 1248px;
     margin: 0 auto;
     align-items: center;
     background-color: #f1f2f3 ;
@@ -87,7 +87,7 @@
 table{
     border-collapse: collapse;
     margin: 0 auto;
-    width: 1280px;
+    max-width: 1248px;
     
 }
 
@@ -107,7 +107,7 @@ td:nth-child(2) {
 }
 #graph {
     display: flex;
-    width: 1280px;
+    max-width: 1248px;
     height: 60px;
     margin: 20px auto;
     overflow: hidden;
@@ -135,7 +135,7 @@ td:nth-child(2) {
 }
 
 #bet {
-    width: 1280px;
+    max-width: 1248px;
     margin: 20px auto;
 }
 
@@ -240,7 +240,7 @@ td:nth-child(2) {
     font-size: 18px;
 }
 #bet-money {
-    width: 1280px;
+    max-width: 1248px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
